@@ -82,7 +82,7 @@ std::vector<Token> lex(const std::string& src) {
                 i++;
             }
             tokens.push_back({TokenType::String, src.substr(start, i-start)});
-            i++; 
+            i++;
             continue;
         }
 
@@ -133,7 +133,7 @@ void fdata_output(const std::string& filename) {
 
     std::lock_guard<std::mutex> lock(mcout);
 
-    std::cout << "solve: (" << filename << ") >>>\n";
+    std::printf("( %s ) >>>\n", filename.c_str());
 
     for (auto& t : tokens) {
         std::string type;
@@ -148,7 +148,7 @@ void fdata_output(const std::string& filename) {
             default: type="UNKNOWN";
         }
 
-        std::cout << "|\t[" << type << "] " << t.value << "\n";
+        std::printf("|\t%-7s :  %s\n", type.c_str(), t.value.c_str());
     }
 
     std::cout << "<<<\n";
